@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setupViewPager(viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        setupTabIcons();
         //End of toolbar setup
     }
 
@@ -41,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new TwoFragment(), "TWO");
         adapter.addFragment(new ThreeFragment(), "THREE");
         viewPager.setAdapter(adapter);
+    }
+
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(R.drawable.home_icon);
+        tabLayout.getTabAt(1).setIcon(R.drawable.calendar_icon);
+        tabLayout.getTabAt(2).setIcon(R.drawable.user_icon);
     }
 
     //Class to hold the fragments and titles of the tabbed "ViewPager"
@@ -69,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return fragmentTitleList.get(position);
+            return null; //only using icons for tabs, not titles
         }
     }
 
