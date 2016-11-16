@@ -1,25 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:paddingLeft="10dp"
-              android:paddingRight="10dp">
-
-    <TextView
-            android:id="@+id/requestReason"
-            android:textStyle="bold"
-            android:layout_width="fill_parent"
-            android:layout_height="35dp" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="10dp">
 
     <TextView
             android:id="@+id/requestSender"
-            android:layout_width="fill_parent"
-            android:layout_height="35dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:textStyle="bold"
+            android:text="Person Sent"
+            android:paddingTop="13dp" android:layout_toEndOf="@+id/circularImageView" android:paddingStart="10dp"/>
 
     <TextView
             android:id="@+id/timeRequested"
-            android:layout_width="fill_parent"
-            android:layout_height="35dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:gravity="right"
+            android:text="Sent X Hours Ago"
+            android:paddingTop="13dp"
+            android:layout_alignParentRight="true" android:paddingEnd="15dp"/>
 
-</LinearLayout>
+    <TextView
+            android:id="@+id/requestReason"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:text="This is the reason I'm asking, so WYA???"
+            android:layout_toEndOf="@id/circularImageView" android:paddingStart="10dp"
+            android:layout_alignParentBottom="false" android:layout_alignParentEnd="false" android:paddingTop="3dp"
+            android:layout_below="@+id/requestSender"/>
+
+    <!--Grabbed circular image-maker from https://github.com/lopspower/CircularImageView-->
+    <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/circularImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/alicecooper_avatar"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="4dp"
+            app:civ_shadow="false"
+            app:civ_shadow_radius="10"
+            app:civ_shadow_color="@color/colorAccent"
+            android:layout_alignBottom="@+id/requestReason"
+            android:layout_alignParentStart="true"/>
+
+
+</RelativeLayout>
