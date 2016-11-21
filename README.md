@@ -1,4 +1,4 @@
-WYA (Where You At)
+#WYA (Where You At)
 
 ##What it does
 I don't know about you, but waiting on your friends to show up somewhere sucks. WYA makes life a little simpler by letting you send a GPS request to friends. Initial commit right now. Future features include:
