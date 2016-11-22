@@ -1,21 +1,30 @@
 package edu.purdue.dbough.wya;
 
 
+import com.mikhaellopez.circularimageview.CircularImageView;
+
 /**
  * Used to display information of where a friend is when
  * user has access to see it
  */
 
 public class User {
-    private int profilePicture;
+    private CircularImageView profilePicture;
+    private int uncroppedProfilePicture;
     private long GUID;
     private String name;
     private String distance;
     private boolean viewGpsPermission = false;
     private boolean isOnTheWay = false;
 
-    public User(String name, int profilePicture, String distance) {
-        this.profilePicture = profilePicture;
+    public User(String distance, String name) {
+        this.distance = distance;
+        this.name = name;
+        //TODO include default user profile picture
+    }
+
+    public User(String name, int uncroppedProfilePicture, String distance) {
+        this.uncroppedProfilePicture = uncroppedProfilePicture;
         this.name = name;
         this.distance = distance;
     }
@@ -24,11 +33,19 @@ public class User {
         return GUID;
     }
 
-    public int getProfilePicture() {
+    public int getUncroppedProfilePicture() {
+        return uncroppedProfilePicture;
+    }
+
+    public void setUncroppedProfilePicture(int uncroppedProfilePicture) {
+        this.uncroppedProfilePicture = uncroppedProfilePicture;
+    }
+
+    public CircularImageView getProfilePicture() {
         return profilePicture;
     }
 
-    public void setProfilePicture(int profilePicture) {
+    public void setProfilePicture(CircularImageView profilePicture) {
         this.profilePicture = profilePicture;
     }
 

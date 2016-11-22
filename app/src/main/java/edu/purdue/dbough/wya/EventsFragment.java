@@ -9,7 +9,6 @@ import android.support.v7.widget.*;
 import android.util.TypedValue;
 import android.view.*;
 import android.widget.*;
-import com.bumptech.glide.Glide;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
@@ -43,47 +42,43 @@ public class EventsFragment extends Fragment {
      * Adding few Users for testing
      */
     private void prepareUsers() {
-        int[] covers = new int[]{
-                R.drawable.user1,
-                R.drawable.user2,
-                R.drawable.user3,
-                R.drawable.user4,
-                R.drawable.user5,
-                R.drawable.user6,
-                R.drawable.user7,
-                R.drawable.user8,
-                R.drawable.user9,
-                R.drawable.user10,
-                R.drawable.user11};
+        CircularImageView profilePic1 = new CircularImageView(getContext());
+        CircularImageView profilePic2 = new CircularImageView(getContext());
+        CircularImageView profilePic3 = new CircularImageView(getContext());
+        CircularImageView profilePic4 = new CircularImageView(getContext());
+        CircularImageView profilePic5 = new CircularImageView(getContext());
+        CircularImageView profilePic6 = new CircularImageView(getContext());
+
+        profilePic1.setImageResource(R.drawable.user1);
+        profilePic2.setImageResource(R.drawable.user2);
+        profilePic3.setImageResource(R.drawable.user3);
+        profilePic4.setImageResource(R.drawable.user4);
+        profilePic5.setImageResource(R.drawable.user5);
+        profilePic6.setImageResource(R.drawable.user6);
+
 
         User a = new User("True Romance", R.drawable.user1, "5 miles away");
+        a.setProfilePicture(profilePic1);
         userList.add(a);
 
         a = new User("Xscpae", R.drawable.user2, "0.8 miles away");
+        a.setProfilePicture(profilePic2);
         userList.add(a);
 
         a = new User("Maroon 5", R.drawable.user3, "Less Than A Mile Away");
+        a.setProfilePicture(profilePic3);
         userList.add(a);
 
         a = new User("Born to Die", R.drawable.user4, "20 miles away");
+        a.setProfilePicture(profilePic4);
         userList.add(a);
 
         a = new User("Honeymoon", R.drawable.user5, "No Location Found");
+        a.setProfilePicture(profilePic5);
         userList.add(a);
 
         a = new User("I Need a Doctor", R.drawable.user6, "1 miles away");
-        userList.add(a);
-
-        a = new User("Loud", R.drawable.user7, "Less than a mile away");
-        userList.add(a);
-
-        a = new User("Legend", R.drawable.user8, "9 miles away");
-        userList.add(a);
-
-        a = new User("Hello", R.drawable.user9, "2 miles away");
-        userList.add(a);
-
-        a = new User("Greatest Hits", R.drawable.user10, "No Location Found");
+        a.setProfilePicture(profilePic6);
         userList.add(a);
 
         UsersAdapter.notifyDataSetChanged();
@@ -141,17 +136,17 @@ public class EventsFragment extends Fragment {
 
         public class FriendViewHolder extends RecyclerView.ViewHolder {
             public TextView title, count;
-            public ImageView profilePicture, overflow;
+            public ImageView overflow;
+            public CircularImageView profilePicture;
 
             public FriendViewHolder(View view) {
                 super(view);
                 title = (TextView) view.findViewById(R.id.title);
                 count = (TextView) view.findViewById(R.id.count);
-                profilePicture = (ImageView) view.findViewById(R.id.inside_profile);
+                profilePicture = (CircularImageView) view.findViewById(R.id.inside_profile);
                 overflow = (ImageView) view.findViewById(R.id.overflow);
             }
         }
-
 
         public UsersAdapter(Context context, List<User> UserList) {
             this.context = context;
@@ -161,7 +156,7 @@ public class EventsFragment extends Fragment {
         @Override
         public FriendViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.friendinfo_card, parent, false);
+                    .inflate(R.layout.friend_info_card, parent, false);
 
             return new FriendViewHolder(itemView);
         }
@@ -172,8 +167,10 @@ public class EventsFragment extends Fragment {
             holder.title.setText(user.getName());
             holder.count.setText(user.getDistance());
 
-            // loading User cover using Glide library
-            Glide.with(context).load(user.getProfilePicture()).into(holder.profilePicture);
+            // loading user profile pic using Glide library
+            //TODO Figure out the best way of permantely cropping profile pictures so Glide can be used
+            //Glide.with(context).load(user.getUncroppedProfilePicture()).into(holder.profilePicture);
+            holder.profilePicture = user.getProfilePicture();
 
             holder.overflow.setOnClickListener(new View.OnClickListener() {
                 @Override
