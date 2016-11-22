@@ -5,18 +5,30 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Holds all the information for a GPS request from a different user
+ * Holds all the information for a GPS request from a different user.
+ * HomeFragment contains a list of these to look through who wants to
+ * see where the user is at
  */
 
 public class GpsRequest {
     String requestSender;
     Date timeRequested;
     String requestReason;
+    int requesterPicture;
 
-    public GpsRequest(String requestReason, String requestSender, Date timeRequested) {
+    public GpsRequest(String requestReason, String requestSender, int profilePic, Date timeRequested) {
         this.requestReason = requestReason;
         this.requestSender = requestSender;
         this.timeRequested = timeRequested;
+        this.requesterPicture = profilePic;
+    }
+
+    public int getRequesterPicture() {
+        return requesterPicture;
+    }
+
+    public void setRequesterPicture(int requesterPicture) {
+        this.requesterPicture = requesterPicture;
     }
 
     public String getRequestReason() {

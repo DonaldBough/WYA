@@ -1,22 +1,14 @@
 package edu.purdue.dbough.wya;
 
-import android.content.res.Resources;
-import android.graphics.Rect;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
 import android.view.Menu;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,23 +36,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
-
-        /*
-        //Cardview setup
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view); //Why is this null. Not inside setcontent view so it doesn't work
-
-        albumList = new ArrayList<>();
-        albumsAdapter = new AlbumsAdapter(this, albumList);
-
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(albumsAdapter);
-        prepareAlbums();
-        */
-
-        //End of cardview setup
     }
 
     @Override
@@ -70,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     *
+     * Add fragments to viewPager adapter and change toolbar title
+     */
     private void setupViewPager(final ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
@@ -78,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new UserFragment(), "THREE");
         viewPager.setAdapter(adapter);
 
-        //Change title to current tab
+        //Change toolbar title to current tab on page change
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -109,7 +88,9 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setIcon(R.drawable.user_icon);
     }
 
-    //Class to hold the fragments and titles of the tabbed "ViewPager"
+    /**
+     * Holds fragments and titles of the tabbed "ViewPager"
+     */
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> fragmentList = new ArrayList<>();
         private final List<String> fragmentTitleList = new ArrayList<>();
@@ -138,6 +119,5 @@ public class MainActivity extends AppCompatActivity {
             return null; //only using icons for tabs, not titles
         }
     }
-
 
 }
