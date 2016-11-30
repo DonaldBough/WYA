@@ -130,19 +130,21 @@ public class EventsFragment extends Fragment {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
+    /**
+     * Adapter for friend_info_card
+     */
     class UsersAdapter extends RecyclerView.Adapter<EventsFragment.UsersAdapter.FriendViewHolder> {
         private Context context;
         private List<User> userList;
 
         public class FriendViewHolder extends RecyclerView.ViewHolder {
-            public TextView title, count;
+            public TextView name;
             public ImageView overflow;
             public CircularImageView profilePicture;
 
             public FriendViewHolder(View view) {
                 super(view);
-                title = (TextView) view.findViewById(R.id.title);
-                count = (TextView) view.findViewById(R.id.count);
+                name = (TextView) view.findViewById(R.id.name);
                 profilePicture = (CircularImageView) view.findViewById(R.id.inside_profile);
                 overflow = (ImageView) view.findViewById(R.id.overflow);
             }
@@ -164,14 +166,13 @@ public class EventsFragment extends Fragment {
         @Override
         public void onBindViewHolder(final FriendViewHolder holder, int position) {
             User user = userList.get(position);
-            holder.title.setText(user.getName());
-            holder.count.setText(user.getDistance());
+//            holder.name.setText(user.getName());
 
             // loading user profile pic using Glide library
             //TODO Figure out the best way of permantely cropping profile pictures so Glide can be used
             //Glide.with(context).load(user.getUncroppedProfilePicture()).into(holder.profilePicture);
             holder.profilePicture = user.getProfilePicture();
-
+            holder.name.setText(user.getName());
             holder.overflow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

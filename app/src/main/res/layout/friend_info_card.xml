@@ -34,13 +34,13 @@
                         android:layout_height="match_parent"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:scaleType="fitXY"
-                        android:src="@drawable/user1"/>
+                        android:src="@drawable/rsz_1background"/>
 
                 <!--Grabbed circular image-maker from https://github.com/lopspower/CircularImageView-->
                 <com.mikhaellopez.circularimageview.CircularImageView
                         android:id="@+id/inside_profile"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/alicecooper_avatar"
                         app:civ_border_color="#EEEEEE"
                         app:civ_border_width="4dp"
@@ -48,31 +48,37 @@
                         app:civ_shadow_radius="10"
                         app:civ_shadow_color="@color/colorAccent"
                         app:layout_gravity="left|center_vertical"/>
+
+                <TextView
+                        android:id="@+id/distance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:textSize="55dp"
+                        android:paddingLeft="140dp" android:paddingTop="50dp" android:text="-1.5"/>
+
+                <TextView
+                        android:id="@+id/miles_away"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:textSize="20dp"
+                        android:text="miles away" android:paddingLeft="235dp" android:paddingTop="50dp"/>
+
             </FrameLayout>
 
-
             <TextView
-                    android:id="@+id/title"
-                    android:layout_width="match_parent"
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/entire_thumbnail"
-                    android:paddingLeft="@dimen/friend_card_title_padding"
+                    android:paddingLeft="15dp"
                     android:paddingRight="@dimen/friend_card_title_padding"
                     android:paddingTop="@dimen/friend_card_title_padding"
                     android:textColor="@color/album_title"
-                    android:textSize="@dimen/friend_card_title"
-                    android:text="Title Here"/>
-
-            <TextView
-                    android:id="@+id/count"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/title"
-                    android:paddingBottom="@dimen/songs_count_padding_bottom"
-                    android:paddingLeft="@dimen/friend_card_title_padding"
-                    android:paddingRight="@dimen/friend_card_title_padding"
-                    android:textSize="@dimen/songs_count"
-                    android:text="#"/>
+                    android:textSize="18dp"
+                    android:text="Friend_Name_Here"
+                    android:textStyle="bold"/>
 
             <ImageView
                     android:id="@+id/overflow"
