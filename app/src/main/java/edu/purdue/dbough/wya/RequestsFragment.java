@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.bumptech.glide.Glide;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-public class UserFragment extends ListFragment{
+public class RequestsFragment extends ListFragment{
 
     ArrayList<GpsRequest> requestList;
 
@@ -102,8 +104,8 @@ public class UserFragment extends ListFragment{
             TextView textView3 = (TextView)rowView.findViewById(R.id.timeRequested);
             textView3.setText(gpsRequest.getTimeRequestedString());
             //Set the profile picture using glide
-//            CircularImageView requesterPicture = (CircularImageView) rowView.findViewById(R.id.circularImageView);
-//            Glide.with(getContext()).load(gpsRequest.getRequesterPicture()).into(requesterPicture);
+            CircularImageView requesterPicture = (CircularImageView) rowView.findViewById(R.id.circularImageView);
+            Glide.with(getContext()).load(gpsRequest.getRequesterPicture()).into(requesterPicture);
 
             return rowView; //This returned view will become a row in our ListView
         }

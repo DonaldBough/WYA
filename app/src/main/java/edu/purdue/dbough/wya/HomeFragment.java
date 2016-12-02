@@ -1,114 +1,227 @@
 package edu.purdue.dbough.wya;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Rect;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-import com.bumptech.glide.Glide;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.*;
+import android.util.TypedValue;
+import android.view.*;
+import android.widget.*;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 
-public class HomeFragment extends ListFragment{
+public class HomeFragment extends Fragment {
 
-    ArrayList<GpsRequest> requestList;
+    private UsersAdapter UsersAdapter;
+    private List<User> userList;
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        String strDate = dateFormat.format(date);
+        userList = new ArrayList<>();
+        UsersAdapter = new UsersAdapter(getContext(), userList);
 
-        //Fake data for temp list. Use firebase here
-        requestList = new ArrayList<>();
-        requestList.add(new GpsRequest("Waiting to leave for Hackathon!","Bob", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("We were supposed to meet for dinner","Sheila", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("Someone let the dogs out","Co-Worker Bob", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("The president is missing!","US Goverment", R.drawable.alicecooper_avatar,date));
+        //Setup for recycler view
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 1);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(10), true));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(UsersAdapter);
+        prepareUsers();
 
-        EventAdapter adapter = new EventAdapter(getActivity(),R.layout.row_layout, requestList);
-        setListAdapter(adapter);
-
-        requestList.add(new GpsRequest("I added this after setListAdapter()","Developer", R.drawable.alicecooper_avatar, date));
-        requestList.add(new GpsRequest("Waiting to leave for Hackathon!","Bob", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("We were supposed to meet for dinner","Sheila", R.drawable.alicecooper_avatar, date));
-        requestList.add(new GpsRequest("Someone let the dogs out","Co-Worker Bob", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("The president is missing!","US Goverment", R.drawable.alicecooper_avatar,date));
-        adapter.notifyDataSetChanged();
         return view;
     }
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
+    /**
+     * Adding few Users for testing
+     */
+    private void prepareUsers() {
+        CircularImageView profilePic1 = new CircularImageView(getContext());
+        CircularImageView profilePic2 = new CircularImageView(getContext());
+        CircularImageView profilePic3 = new CircularImageView(getContext());
+        CircularImageView profilePic4 = new CircularImageView(getContext());
+        CircularImageView profilePic5 = new CircularImageView(getContext());
+        CircularImageView profilePic6 = new CircularImageView(getContext());
 
-        //Load the event name and display a message
-        String name = requestList.get(position).getRequestSender();
-        Toast.makeText(getActivity(), "List item #"+position+" was clicked." +
-                " Name: "+name,Toast.LENGTH_SHORT).show();
+        profilePic1.setImageResource(R.drawable.user1);
+        profilePic2.setImageResource(R.drawable.user2);
+        profilePic3.setImageResource(R.drawable.user3);
+        profilePic4.setImageResource(R.drawable.user4);
+        profilePic5.setImageResource(R.drawable.user5);
+        profilePic6.setImageResource(R.drawable.user6);
+
+
+        User a = new User("True Romance", R.drawable.user1, "5 miles away");
+        a.setProfilePicture(profilePic1);
+        userList.add(a);
+
+        a = new User("Xscpae", R.drawable.user2, "0.8 miles away");
+        a.setProfilePicture(profilePic2);
+        userList.add(a);
+
+        a = new User("Maroon 5", R.drawable.user3, "Less Than A Mile Away");
+        a.setProfilePicture(profilePic3);
+        userList.add(a);
+
+        a = new User("Born to Die", R.drawable.user4, "20 miles away");
+        a.setProfilePicture(profilePic4);
+        userList.add(a);
+
+        a = new User("Honeymoon", R.drawable.user5, "No Location Found");
+        a.setProfilePicture(profilePic5);
+        userList.add(a);
+
+        a = new User("I Need a Doctor", R.drawable.user6, "1 miles away");
+        a.setProfilePicture(profilePic6);
+        userList.add(a);
+
+        UsersAdapter.notifyDataSetChanged();
     }
 
     /**
-     * Converts a list of events into row Views to be placed in the ListView.
-     * Most of the work is already done for us in ArrayAdapter, but we need
-     * to hook it up to our specific layout
+     * RecyclerView item decoration - give equal margin around grid item
      */
-    private class EventAdapter extends ArrayAdapter<GpsRequest> {
-        private ArrayList<GpsRequest> values;
+    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
+        private int spanCount;
+        private int spacing;
+        private boolean includeEdge;
 
-        public EventAdapter(Context context, int resource, ArrayList<GpsRequest> events) {
-            super(context, resource, events);
-            values = events;
+        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
+            this.spanCount = spanCount;
+            this.spacing = spacing;
+            this.includeEdge = includeEdge;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            int position = parent.getChildAdapterPosition(view); // item position
+            int column = position % spanCount; // item column
+
+            if (includeEdge) {
+                outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
+                outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
+
+                if (position < spanCount) { // top edge
+                    outRect.top = spacing;
+                }
+                outRect.bottom = spacing; // item bottom
+            } else {
+                outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
+                outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
+                if (position >= spanCount) {
+                    outRect.top = spacing; // item top
+                }
+            }
+        }
+    }
+
+    /**
+     * Converting dp to pixel
+     */
+    private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
+
+    /**
+     * Adapter for events_info_card
+     */
+    class UsersAdapter extends RecyclerView.Adapter<HomeFragment.UsersAdapter.FriendViewHolder> {
+        private Context context;
+        private List<User> userList;
+
+        public class FriendViewHolder extends RecyclerView.ViewHolder {
+            public TextView name;
+            public ImageView overflow;
+            public CircularImageView profilePicture;
+
+            public FriendViewHolder(View view) {
+                super(view);
+                name = (TextView) view.findViewById(R.id.name);
+                profilePicture = (CircularImageView) view.findViewById(R.id.inside_profile);
+                overflow = (ImageView) view.findViewById(R.id.overflow);
+            }
+        }
+
+        public UsersAdapter(Context context, List<User> UserList) {
+            this.context = context;
+            this.userList = UserList;
+        }
+
+        @Override
+        public FriendViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.events_info_card, parent, false);
+
+            return new FriendViewHolder(itemView);
+        }
+
+        @Override
+        public void onBindViewHolder(final FriendViewHolder holder, int position) {
+            User user = userList.get(position);
+//            holder.name.setText(user.getName());
+
+            // loading user profile pic using Glide library
+            //TODO Figure out the best way of permantely cropping profile pictures so Glide can be used
+            //Glide.with(context).load(user.getUncroppedProfilePicture()).into(holder.profilePicture);
+            holder.profilePicture = user.getProfilePicture();
+            holder.name.setText(user.getName());
+            holder.overflow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showPopupMenu(holder.overflow);
+                }
+            });
         }
 
         /**
-         * Generates the view for a particular item
-         * We don't call this ourselves, it's all handled by the ListView automatically.
-         * We just need to say where the data should go
+         * Showing popup menu when tapping on 3 dots
          */
+        private void showPopupMenu(View view) {
+            // inflate menu
+            android.support.v7.widget.PopupMenu popup = new android.support.v7.widget.PopupMenu(context, view);
+            MenuInflater inflater = popup.getMenuInflater();
+            inflater.inflate(R.menu.menu_friend, popup.getMenu());
+            popup.setOnMenuItemClickListener(new FriendMenuItemClickListener());
+            popup.show();
+        }
+
+        /**
+         * Click listener for popup menu items
+         */
+        class FriendMenuItemClickListener implements android.support.v7.widget.PopupMenu.OnMenuItemClickListener {
+
+            public FriendMenuItemClickListener() {
+                //Leave for possible use one day
+            }
+
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.action_request_location:
+                        Toast.makeText(context, "Request Location Here", Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.action_remind:
+                        Toast.makeText(context, "Ask friend to leave here", Toast.LENGTH_SHORT).show();
+                        return true;
+                    default:
+                }
+                return false;
+            }
+        }
+
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View rowView;   //rowView represents one row in our ListView
-            GpsRequest gpsRequest = values.get(position);
-            //Inflating views can be slow, so android lets us recycle old views
-            if(convertView == null)
-                rowView = inflater.inflate(R.layout.row_layout,parent,false);
-            else
-                rowView = convertView;
-
-            //Setup rowView UI elements with parts from GpsRequest class
-            //This is why we can't just use ArrayAdapter
-
-            //Set the requester of the event
-            TextView textView = (TextView)rowView.findViewById(R.id.requestSender);
-            //Load the event name from the position array
-            textView.setText(gpsRequest.getRequestSender());
-
-            TextView textView2 = (TextView)rowView.findViewById(R.id.requestReason);
-            textView2.setText(gpsRequest.getRequestReason());
-            //Set the swag description
-            TextView textView3 = (TextView)rowView.findViewById(R.id.timeRequested);
-            textView3.setText(gpsRequest.getTimeRequestedString());
-            //Set the profile picture using glide
-            CircularImageView requesterPicture = (CircularImageView) rowView.findViewById(R.id.circularImageView);
-            Glide.with(getContext()).load(gpsRequest.getRequesterPicture()).into(requesterPicture);
-
-            return rowView; //This returned view will become a row in our ListView
+        public int getItemCount() {
+            return userList.size();
         }
     }
+
 
 }

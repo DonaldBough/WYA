@@ -34,7 +34,7 @@
                         android:layout_height="match_parent"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:scaleType="fitXY"
-                        android:src="@drawable/rsz_1background"/>
+                        android:src="@drawable/background"/>
 
                 <!--Grabbed circular image-maker from https://github.com/lopspower/CircularImageView-->
 
@@ -56,7 +56,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="#ffffff"
                         android:textSize="55dp"
-                        android:text="-1.5"
+                        android:text="9.99"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/inside_profile"/>
                 <TextView
@@ -80,7 +80,7 @@
                     android:paddingTop="@dimen/friend_card_title_padding"
                     android:textColor="@color/album_title"
                     android:textSize="18dp"
-                    android:text="Friend_Name_Here"
+                    android:text="Friend Name"
                     android:textStyle="bold"/>
 
             <ImageView

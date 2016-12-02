@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         adapter.addFragment(new HomeFragment(), "ONE");
-        adapter.addFragment(new EventsFragment(), "TWO");
+        adapter.addFragment(new RequestsFragment(), "TWO");
         adapter.addFragment(new UserFragment(), "THREE");
         viewPager.setAdapter(adapter);
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         toolbar.setTitle("Home");
                         break;
                     case 1:
-                        toolbar.setTitle("Events");
+                        toolbar.setTitle("Requests");
                         break;
                     case 2:
                         toolbar.setTitle("Profile");
