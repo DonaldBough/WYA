@@ -19,7 +19,7 @@
                 android:layout_height="match_parent"
                 android:clipChildren="false">
 
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                          android:id="@+id/entire_thumbnail"
                          android:layout_width="match_parent"
                          android:layout_height="@dimen/friend_card_height"
@@ -37,6 +37,7 @@
                         android:src="@drawable/rsz_1background"/>
 
                 <!--Grabbed circular image-maker from https://github.com/lopspower/CircularImageView-->
+
                 <com.mikhaellopez.circularimageview.CircularImageView
                         android:id="@+id/inside_profile"
                         android:layout_width="100dp"
@@ -47,25 +48,27 @@
                         app:civ_shadow="false"
                         app:civ_shadow_radius="10"
                         app:civ_shadow_color="@color/colorAccent"
-                        app:layout_gravity="left|center_vertical"/>
-
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"/>
                 <TextView
                         android:id="@+id/distance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#ffffff"
                         android:textSize="55dp"
-                        android:paddingLeft="140dp" android:paddingTop="50dp" android:text="-1.5"/>
-
+                        android:text="-1.5"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/inside_profile"/>
                 <TextView
                         android:id="@+id/miles_away"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#ffffff"
                         android:textSize="20dp"
-                        android:text="miles away" android:paddingLeft="235dp" android:paddingTop="50dp"/>
+                        android:text="miles away" android:layout_alignTop="@+id/distance"
+                        android:layout_toEndOf="@+id/distance"/>
 
-            </FrameLayout>
+            </RelativeLayout>
 
             <TextView
                     android:id="@+id/name"
