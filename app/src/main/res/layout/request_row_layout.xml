@@ -12,25 +12,26 @@
             android:layout_height="35dp"
             android:textStyle="bold"
             android:text="Person Sent"
-            android:paddingTop="13dp"
+            android:textSize="15dp"
+            android:paddingTop="16dp"
             android:layout_toEndOf="@+id/circularImageView"
             android:paddingStart="10dp"/>
 
     <TextView
-            android:id="@+id/timeRequested"
+            android:id="@+id/requestDay"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:gravity="right"
-            android:text="Sent X Hours Ago"
+            android:text="Day of Week"
             android:paddingTop="13dp"
-            android:layout_alignParentRight="true" android:paddingEnd="15dp"/>
+            android:layout_alignParentRight="true" android:paddingEnd="30dp"/>
 
     <TextView
-            android:id="@+id/requestReason"
+            android:id="@+id/requestTime"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:gravity="center"
-            android:text="This is the reason I'm asking, so WYA???"
+            android:text="00:00 AM through 00:00 PM"
             android:layout_toEndOf="@id/circularImageView" android:paddingStart="10dp"
             android:layout_alignParentBottom="false" android:layout_alignParentEnd="false" android:paddingTop="3dp"
             android:layout_below="@+id/requestSender"/>
@@ -46,7 +47,7 @@
             app:civ_shadow="false"
             app:civ_shadow_radius="10"
             app:civ_shadow_color="@color/colorAccent"
-            android:layout_alignBottom="@+id/requestReason"
+            android:layout_alignBottom="@+id/requestTime"
             android:layout_alignParentStart="true"/>
 
 

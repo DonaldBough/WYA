@@ -12,14 +12,14 @@ import java.util.Date;
 
 public class GpsRequest {
     String requestSender;
-    Date timeRequested;
-    String requestReason;
+    String dayOfRequest;
+    String requestTime;
     int requesterPicture;
 
-    public GpsRequest(String requestReason, String requestSender, int profilePic, Date timeRequested) {
-        this.requestReason = requestReason;
+    public GpsRequest(String requestTime, String requestSender, int profilePic, String dayOfRequest) {
+        this.requestTime = requestTime;
         this.requestSender = requestSender;
-        this.timeRequested = timeRequested;
+        this.dayOfRequest = dayOfRequest;
         this.requesterPicture = profilePic;
     }
 
@@ -27,22 +27,12 @@ public class GpsRequest {
         return requesterPicture;
     }
 
-    public void setRequesterPicture(int requesterPicture) {
-        this.requesterPicture = requesterPicture;
+    public String getRequestTime() {
+        return requestTime;
     }
 
-    public String getRequestReason() {
-        return requestReason;
-    }
-
-    public Date getTimeRequested() {
-        return timeRequested;
-    }
-
-    public String getTimeRequestedString() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        return dateFormat.format(date).toString();
+    public String getDayRequested() {
+        return dayOfRequest;
     }
 
     public String getRequestSender() {

@@ -9,6 +9,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +89,22 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(1).setIcon(R.drawable.binoculars);
         tabLayout.getTabAt(2).setIcon(R.drawable.user_icon);
     }
+
+    /**
+     * Inside RequestsFragment
+     */
+    public void onClickSendAlarm(View view) {
+        Toast.makeText(view.getContext(), "Send Alarm here",Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Inside RequestsFragment
+     */
+    public void onClickOpenMap(View view) {
+        Toast.makeText(view.getContext(), "Open Gmaps here",Toast.LENGTH_SHORT).show();
+    }
+
+
 
     /**
      * Holds fragments and titles of the tabbed "ViewPager"

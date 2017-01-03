@@ -29,22 +29,22 @@ public class UserFragment extends ListFragment{
         Date date = new Date();
         String strDate = dateFormat.format(date);
 
-        //Fake data for temp list. Use firebase here
-        requestList = new ArrayList<>();
-        requestList.add(new GpsRequest("Waiting to leave for Hackathon!","Bob", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("We were supposed to meet for dinner","Sheila", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("Someone let the dogs out","Co-Worker Bob", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("The president is missing!","US Goverment", R.drawable.alicecooper_avatar,date));
-
-        EventAdapter adapter = new EventAdapter(getActivity(),R.layout.home_row_layout, requestList);
-        setListAdapter(adapter);
-
-        requestList.add(new GpsRequest("I added this after setListAdapter()","Developer", R.drawable.alicecooper_avatar, date));
-        requestList.add(new GpsRequest("Waiting to leave for Hackathon!","Bob", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("We were supposed to meet for dinner","Sheila", R.drawable.alicecooper_avatar, date));
-        requestList.add(new GpsRequest("Someone let the dogs out","Co-Worker Bob", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("The president is missing!","US Goverment", R.drawable.alicecooper_avatar,date));
-        adapter.notifyDataSetChanged();
+//        //Fake data for temp list. Use firebase here
+//        requestList = new ArrayList<>();
+//        requestList.add(new GpsRequest("Waiting to leave for Hackathon!","Bob", R.drawable.alicecooper_avatar,date));
+//        requestList.add(new GpsRequest("We were supposed to meet for dinner","Sheila", R.drawable.alicecooper_avatar,date));
+//        requestList.add(new GpsRequest("Someone let the dogs out","Co-Worker Bob", R.drawable.alicecooper_avatar,date));
+//        requestList.add(new GpsRequest("The president is missing!","US Goverment", R.drawable.alicecooper_avatar,date));
+//
+//        EventAdapter adapter = new EventAdapter(getActivity(),R.layout.request_row_layout, requestList);
+//        setListAdapter(adapter);
+//
+//        requestList.add(new GpsRequest("I added this after setListAdapter()","Developer", R.drawable.alicecooper_avatar, date));
+//        requestList.add(new GpsRequest("Waiting to leave for Hackathon!","Bob", R.drawable.alicecooper_avatar,date));
+//        requestList.add(new GpsRequest("We were supposed to meet for dinner","Sheila", R.drawable.alicecooper_avatar, date));
+//        requestList.add(new GpsRequest("Someone let the dogs out","Co-Worker Bob", R.drawable.alicecooper_avatar,date));
+//        requestList.add(new GpsRequest("The president is missing!","US Goverment", R.drawable.alicecooper_avatar,date));
+//        adapter.notifyDataSetChanged();
         return view;
     }
 
@@ -84,26 +84,18 @@ public class UserFragment extends ListFragment{
             GpsRequest gpsRequest = values.get(position);
             //Inflating views can be slow, so android lets us recycle old views
             if(convertView == null)
-                rowView = inflater.inflate(R.layout.home_row_layout,parent,false);
+                rowView = inflater.inflate(R.layout.request_row_layout,parent,false);
             else
                 rowView = convertView;
 
             //Setup rowView UI elements with parts from GpsRequest class
             //This is why we can't just use ArrayAdapter
-
-            //Set the requester of the event
-            TextView textView = (TextView)rowView.findViewById(R.id.requestSender);
-            //Load the event name from the position array
-            textView.setText(gpsRequest.getRequestSender());
-
-            TextView textView2 = (TextView)rowView.findViewById(R.id.requestReason);
-            textView2.setText(gpsRequest.getRequestReason());
-            //Set the swag description
-            TextView textView3 = (TextView)rowView.findViewById(R.id.timeRequested);
-            textView3.setText(gpsRequest.getTimeRequestedString());
-            //Set the profile picture using glide
-//            CircularImageView requesterPicture = (CircularImageView) rowView.findViewById(R.id.circularImageView);
-//            Glide.with(getContext()).load(gpsRequest.getRequesterPicture()).into(requesterPicture);
+            TextView requestSender = (TextView)rowView.findViewById(R.id.requestSender);
+            requestSender.setText(gpsRequest.getRequestSender());
+            TextView requestTime = (TextView)rowView.findViewById(R.id.requestTime);
+            requestTime.setText(gpsRequest.getRequestTime());
+            TextView requestDay = (TextView)rowView.findViewById(R.id.requestDay);
+            requestDay.setText(gpsRequest.getDayRequested());
 
             return rowView; //This returned view will become a row in our ListView
         }

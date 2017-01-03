@@ -30,7 +30,7 @@ public class HomeFragment extends Fragment {
         //Setup for recycler view
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 1);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(10), true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(7), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(UsersAdapter);
         prepareUsers();
@@ -57,32 +57,34 @@ public class HomeFragment extends Fragment {
         profilePic6.setImageResource(R.drawable.user6);
 
 
-        User a = new User("True Romance", R.drawable.user1, "5 miles away");
+        User a = new User("Alice Cooper", R.drawable.user1, "5 miles away");
         a.setProfilePicture(profilePic1);
         userList.add(a);
 
-        a = new User("Xscpae", R.drawable.user2, "0.8 miles away");
+        a = new User("Ronald McDonald", R.drawable.user2, "0.8 miles away");
         a.setProfilePicture(profilePic2);
         userList.add(a);
 
-        a = new User("Maroon 5", R.drawable.user3, "Less Than A Mile Away");
+        a = new User("Donald Trump", R.drawable.user3, "Less Than A Mile Away");
         a.setProfilePicture(profilePic3);
         userList.add(a);
 
-        a = new User("Born to Die", R.drawable.user4, "20 miles away");
+        a = new User("Jill Stein", R.drawable.user4, "20 miles away");
         a.setProfilePicture(profilePic4);
         userList.add(a);
 
-        a = new User("Honeymoon", R.drawable.user5, "No Location Found");
+        a = new User("Donald Bough", R.drawable.user5, "No Location Found");
         a.setProfilePicture(profilePic5);
         userList.add(a);
 
-        a = new User("I Need a Doctor", R.drawable.user6, "1 miles away");
+        a = new User("Bill Nye", R.drawable.user6, "1 miles away");
         a.setProfilePicture(profilePic6);
         userList.add(a);
 
         UsersAdapter.notifyDataSetChanged();
     }
+
+
 
     /**
      * RecyclerView item decoration - give equal margin around grid item
@@ -138,15 +140,14 @@ public class HomeFragment extends Fragment {
         private List<User> userList;
 
         public class FriendViewHolder extends RecyclerView.ViewHolder {
-            public TextView name;
+            public TextView friendName;
             public ImageView overflow;
             public CircularImageView profilePicture;
 
             public FriendViewHolder(View view) {
                 super(view);
-                name = (TextView) view.findViewById(R.id.name);
+                friendName = (TextView) view.findViewById(R.id.friend_name);
                 profilePicture = (CircularImageView) view.findViewById(R.id.inside_profile);
-                overflow = (ImageView) view.findViewById(R.id.overflow);
             }
         }
 
@@ -158,7 +159,7 @@ public class HomeFragment extends Fragment {
         @Override
         public FriendViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.events_info_card, parent, false);
+                    .inflate(R.layout.friend_info_card, parent, false);
 
             return new FriendViewHolder(itemView);
         }
@@ -166,55 +167,13 @@ public class HomeFragment extends Fragment {
         @Override
         public void onBindViewHolder(final FriendViewHolder holder, int position) {
             User user = userList.get(position);
-//            holder.name.setText(user.getName());
 
             // loading user profile pic using Glide library
             //TODO Figure out the best way of permantely cropping profile pictures so Glide can be used
             //Glide.with(context).load(user.getUncroppedProfilePicture()).into(holder.profilePicture);
             holder.profilePicture = user.getProfilePicture();
-            holder.name.setText(user.getName());
-            holder.overflow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    showPopupMenu(holder.overflow);
-                }
-            });
-        }
+            holder.friendName.setText(user.getName());
 
-        /**
-         * Showing popup menu when tapping on 3 dots
-         */
-        private void showPopupMenu(View view) {
-            // inflate menu
-            android.support.v7.widget.PopupMenu popup = new android.support.v7.widget.PopupMenu(context, view);
-            MenuInflater inflater = popup.getMenuInflater();
-            inflater.inflate(R.menu.menu_friend, popup.getMenu());
-            popup.setOnMenuItemClickListener(new FriendMenuItemClickListener());
-            popup.show();
-        }
-
-        /**
-         * Click listener for popup menu items
-         */
-        class FriendMenuItemClickListener implements android.support.v7.widget.PopupMenu.OnMenuItemClickListener {
-
-            public FriendMenuItemClickListener() {
-                //Leave for possible use one day
-            }
-
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.action_request_location:
-                        Toast.makeText(context, "Request Location Here", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.action_remind:
-                        Toast.makeText(context, "Ask friend to leave here", Toast.LENGTH_SHORT).show();
-                        return true;
-                    default:
-                }
-                return false;
-            }
         }
 
         @Override

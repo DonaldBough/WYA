@@ -10,13 +10,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/card_margin"
-            android:elevation="3dp"
-            card_view:cardCornerRadius="@dimen/card_album_radius">
+            card_view:cardPreventCornerOverlap="false"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardElevation="3dp">
 
         <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="205dp"
                 android:clipChildren="false">
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -34,7 +34,7 @@
                         android:layout_height="match_parent"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:scaleType="fitXY"
-                        android:src="@drawable/background"/>
+                        android:src="@drawable/home_card_background3"/>
 
                 <!--Grabbed circular image-maker from https://github.com/lopspower/CircularImageView-->
 
@@ -43,22 +43,14 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@drawable/alicecooper_avatar"
-                        app:civ_border_color="#EEEEEE"
+                        app:civ_border_color="@color/colorAccent"
                         app:civ_border_width="4dp"
                         app:civ_shadow="false"
                         app:civ_shadow_radius="10"
                         app:civ_shadow_color="@color/colorAccent"
                         android:layout_centerVertical="true"
                         android:layout_alignParentStart="true"/>
-                <TextView
-                        android:id="@+id/distance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#ffffff"
-                        android:textSize="55dp"
-                        android:text="9.99"
-                        android:layout_centerVertical="true"
-                        android:layout_toEndOf="@+id/inside_profile"/>
+
                 <TextView
                         android:id="@+id/miles_away"
                         android:layout_width="wrap_content"
@@ -67,31 +59,63 @@
                         android:textSize="20dp"
                         android:text="miles away" android:layout_alignTop="@+id/distance"
                         android:layout_toEndOf="@+id/distance"/>
+                <TextView
+                        android:text="Friend Name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/friend_name"
+                        android:textColor="#ffffff" android:textSize="20dp"
+                        android:layout_alignTop="@+id/inside_profile" android:layout_toEndOf="@+id/inside_profile"
+                        android:layout_marginStart="17dp"/>
+                <TextView
+                        android:id="@+id/distance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:textSize="55dp"
+                        android:text="9.99"
+                        android:layout_marginBottom="11dp"
+                        android:layout_alignParentBottom="true" android:layout_alignStart="@+id/friend_name"/>
+
 
             </RelativeLayout>
 
-            <TextView
-                    android:id="@+id/name"
+            <Button
+                    android:id="@+id/sendAlarmTextView"
+                    android:text="Send Alarm"
+                    android:textSize="13dp"
+                    android:onClick="onClickSendAlarm"
+                    android:background="#ffffff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/entire_thumbnail"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="@dimen/friend_card_title_padding"
-                    android:paddingTop="@dimen/friend_card_title_padding"
-                    android:textColor="@color/album_title"
-                    android:textSize="18dp"
-                    android:text="Friend Name"
-                    android:textStyle="bold"/>
+                    android:paddingLeft="35dp"
+                    android:paddingTop="6dp"
+                    android:layout_below="@+id/entire_thumbnail"
+                    style="?android:attr/borderlessButtonStyle"
+            />
 
-            <ImageView
-                    android:id="@+id/overflow"
-                    android:layout_width="@dimen/ic_album_overflow_width"
-                    android:layout_height="@dimen/ic_album_overflow_height"
+            <Button
+                    android:id="@+id/openGPSTextView"
+                    android:text="Open Map"
+                    android:textSize="13dp"
+                    android:background="#ffffff"
+                    android:onClick="onClickOpenMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="35dp"
+                    android:paddingTop="6dp"
+                    android:layout_below="@+id/entire_thumbnail"
                     android:layout_alignParentRight="true"
+                    android:paddingRight="65dp"
+                    style="?android:attr/borderlessButtonStyle"/>
+            />
+
+            <View
+                    android:background="#d9d9d9"
                     android:layout_below="@id/entire_thumbnail"
-                    android:layout_marginTop="@dimen/ic_album_overflow_margin_top"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_dots" />
+                    android:layout_centerHorizontal="true" android:layout_marginTop="8dp" android:layout_width="2dp"
+                    android:layout_height="29dp"/>
+
 
         </RelativeLayout>
 
