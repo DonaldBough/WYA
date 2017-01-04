@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--Grabbed circular image-maker from https://github.com/lopspower/CircularImageView-->
+    <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/circularImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/alicecooper_avatar"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="4dp"
+            app:civ_shadow="false"
+            app:civ_shadow_radius="10"
+            app:civ_shadow_color="@color/colorAccent"
+            android:layout_alignParentStart="true" android:layout_marginTop="15dp" android:layout_marginLeft="10dp"/>
+
+    <TextView
+            android:id="@+id/requestSender"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:textStyle="bold"
+            android:text="Person Sent"
+            android:textSize="15dp"
+            android:paddingTop="16dp"
+            android:layout_toEndOf="@+id/circularImageView"
+            android:paddingStart="10dp"/>
+
+    <Button
+            android:id="@+id/acceptButton"
+            android:text="Accept"
+            android:textSize="13dp"
+            android:onClick="onClickAccept"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/circularImageView"
+            android:layout_below="@+id/requestSender"
+            android:paddingLeft="35dp"
+            style="?android:attr/borderlessButtonStyle" android:paddingRight="35dp"/>
+
+    <View
+            android:id="@+id/view_divider"
+            android:layout_width="2dp"
+            android:layout_height="29dp"
+            android:background="#d9d9d9"
+            android:layout_below="@id/requestSender"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/acceptButton"
+    />
+
+    <Button
+            android:id="@+id/declineButton"
+            android:text="Decline"
+            android:textSize="13dp"
+            android:onClick="onClickDecline"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/view_divider"
+            android:layout_below="@+id/requestSender"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            style="?android:attr/borderlessButtonStyle"/>
+
+
+
+</RelativeLayout>

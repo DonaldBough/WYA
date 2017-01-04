@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.addFragment(new HomeFragment(), "ONE");
         adapter.addFragment(new RequestsFragment(), "TWO");
-        adapter.addFragment(new UserFragment(), "THREE");
+        adapter.addFragment(new NotificationsFragment(), "THREE");
         viewPager.setAdapter(adapter);
 
         //Change toolbar title to current tab on page change
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                         toolbar.setTitle("Requests");
                         break;
                     case 2:
-                        toolbar.setTitle("Profile");
+                        toolbar.setTitle("Notifications");
                         break;
                 }
             }
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(R.drawable.home_icon);
         tabLayout.getTabAt(1).setIcon(R.drawable.binoculars);
-        tabLayout.getTabAt(2).setIcon(R.drawable.user_icon);
+        tabLayout.getTabAt(2).setIcon(R.drawable.bell);
     }
 
     /**
@@ -104,6 +104,21 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(view.getContext(), "Open Gmaps here",Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Inside NotificationsFragment
+     * Happens on notifications being accepted
+     */
+    public void onClickAccept(View view) {
+        Toast.makeText(view.getContext(), "Delete from List Here",Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Inside NotificationsFragment
+     * Happens on notifications being declined
+     */
+    public void onClickDecline(View view) {
+        Toast.makeText(view.getContext(), "Delete from List Here",Toast.LENGTH_SHORT).show();
+    }
 
 
     /**

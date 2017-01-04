@@ -91,8 +91,7 @@
                     android:paddingLeft="35dp"
                     android:paddingTop="6dp"
                     android:layout_below="@+id/entire_thumbnail"
-                    style="?android:attr/borderlessButtonStyle"
-            />
+                    style="?android:attr/borderlessButtonStyle"/>
 
             <Button
                     android:id="@+id/openGPSTextView"
@@ -108,7 +107,6 @@
                     android:layout_alignParentRight="true"
                     android:paddingRight="65dp"
                     style="?android:attr/borderlessButtonStyle"/>
-            />
 
             <View
                     android:background="#d9d9d9"
