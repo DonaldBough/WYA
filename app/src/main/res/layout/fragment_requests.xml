@@ -8,7 +8,7 @@
     this only shows up if the listView has no content-->
     <TextView
             android:id="@+id/request_header"
-            android:text="People who can alarm or open your GPS"
+            android:text="People with access to you"
             android:textSize="15dp"
             android:layout_width="wrap_content"
             android:layout_height="35dp"

@@ -15,8 +15,8 @@ public class RequestsFragment extends ListFragment{
 
     ArrayList<GpsRequest> requestList;
     private EventAdapter adapter;
-    private String longPressedUser;
-    private int longPressedItem;
+    private String selectedUser;
+    private int selectedItem;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,11 +45,11 @@ public class RequestsFragment extends ListFragment{
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
+        selectedUser = requestList.get(position).getRequestSender();
+        selectedItem = position;
         super.onListItemClick(l, v, position, id);
         registerForContextMenu(l);
         getActivity().openContextMenu(l);
-        longPressedUser = requestList.get(position).getRequestSender();
-        longPressedItem = position;
     }
 
     /**
@@ -59,7 +59,7 @@ public class RequestsFragment extends ListFragment{
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         //Context menu
-        menu.setHeaderTitle("Permanently Delete Request?");
+        menu.setHeaderTitle("Request From " + selectedUser);
         menu.add(Menu.NONE, 0, Menu.NONE, "Delete");
     }
 
@@ -68,10 +68,10 @@ public class RequestsFragment extends ListFragment{
      */
     @Override
     public boolean onContextItemSelected (MenuItem item){
-        if (longPressedUser != null) {
-            requestList.remove(longPressedItem);
+        if (selectedUser != null) {
+            requestList.remove(selectedItem);
             adapter.notifyDataSetChanged();
-            Toast.makeText(getActivity(), "Deleted request from " + longPressedUser,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Deleted request from " + selectedUser,Toast.LENGTH_SHORT).show();
         }
 
         return super.onContextItemSelected(item);

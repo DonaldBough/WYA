@@ -22,48 +22,62 @@
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:textStyle="bold"
+            android:textColor="@color/album_title"
             android:text="Person Sent"
             android:textSize="15dp"
             android:paddingTop="16dp"
             android:layout_toEndOf="@+id/circularImageView"
-            android:paddingStart="10dp"/>
+            android:paddingStart="12dp"/>
 
-    <Button
-            android:id="@+id/acceptButton"
-            android:text="Accept"
-            android:textSize="13dp"
+    <ImageButton
+            android:id="@+id/accept_button"
             android:onClick="onClickAccept"
-            android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:srcCompat="@drawable/button_accept"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="10dp"
             android:layout_toEndOf="@id/circularImageView"
             android:layout_below="@+id/requestSender"
-            android:paddingLeft="35dp"
-            style="?android:attr/borderlessButtonStyle" android:paddingRight="35dp"/>
-
-    <View
-            android:id="@+id/view_divider"
-            android:layout_width="2dp"
-            android:layout_height="29dp"
-            android:background="#d9d9d9"
-            android:layout_below="@id/requestSender"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/acceptButton"
-    />
-
-    <Button
-            android:id="@+id/declineButton"
-            android:text="Decline"
-            android:textSize="13dp"
+            android:layout_marginLeft="12dp"/>
+    <ImageButton
+            android:id="@+id/ignore_button"
             android:onClick="onClickDecline"
-            android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/view_divider"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="10dp"
+            app:srcCompat="@drawable/button_ignore"
+            android:background="@android:color/transparent"
+            android:layout_toEndOf="@id/accept_button"
             android:layout_below="@+id/requestSender"
             android:paddingLeft="35dp"
-            android:paddingRight="35dp"
-            style="?android:attr/borderlessButtonStyle"/>
+            android:paddingRight="35dp" />
+
+    <TextView
+            android:text="ACCEPT"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/accept_button"
+            android:layout_alignTop="@id/accept_button"
+            android:layout_alignRight="@id/accept_button"
+            android:layout_alignBottom="@+id/accept_button"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"/>
+
+    <TextView
+            android:text="IGNORE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/ignore_button"
+            android:layout_alignTop="@id/ignore_button"
+            android:layout_alignRight="@id/ignore_button"
+            android:layout_alignBottom="@+id/ignore_button"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+    />
 
 
 
