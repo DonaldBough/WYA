@@ -42,43 +42,17 @@ public class HomeFragment extends Fragment {
      * Adding few Users for testing
      */
     private void prepareUsers() {
-        CircularImageView profilePic1 = new CircularImageView(getContext());
-        CircularImageView profilePic2 = new CircularImageView(getContext());
-        CircularImageView profilePic3 = new CircularImageView(getContext());
-        CircularImageView profilePic4 = new CircularImageView(getContext());
-        CircularImageView profilePic5 = new CircularImageView(getContext());
-        CircularImageView profilePic6 = new CircularImageView(getContext());
-
-        profilePic1.setImageResource(R.drawable.user1);
-        profilePic2.setImageResource(R.drawable.user2);
-        profilePic3.setImageResource(R.drawable.user3);
-        profilePic4.setImageResource(R.drawable.user4);
-        profilePic5.setImageResource(R.drawable.user5);
-        profilePic6.setImageResource(R.drawable.user6);
-
-
         User a = new User("Alice Cooper", R.drawable.user1, "5 miles away");
-        a.setProfilePicture(profilePic1);
         userList.add(a);
-
         a = new User("Ronald McDonald", R.drawable.user2, "0.8 miles away");
-        a.setProfilePicture(profilePic2);
         userList.add(a);
-
         a = new User("Donald Trump", R.drawable.user3, "Less Than A Mile Away");
-        a.setProfilePicture(profilePic3);
         userList.add(a);
-
         a = new User("Jill Stein", R.drawable.user4, "20 miles away");
-        a.setProfilePicture(profilePic4);
         userList.add(a);
-
         a = new User("Donald Bough", R.drawable.user5, "No Location Found");
-        a.setProfilePicture(profilePic5);
         userList.add(a);
-
         a = new User("Bill Nye", R.drawable.user6, "1 miles away");
-        a.setProfilePicture(profilePic6);
         userList.add(a);
 
         UsersAdapter.notifyDataSetChanged();
@@ -141,7 +115,6 @@ public class HomeFragment extends Fragment {
 
         public class FriendViewHolder extends RecyclerView.ViewHolder {
             public TextView friendName;
-            public ImageView overflow;
             public CircularImageView profilePicture;
 
             public FriendViewHolder(View view) {
@@ -171,9 +144,9 @@ public class HomeFragment extends Fragment {
             // loading user profile pic using Glide library
             //TODO Figure out the best way of permantely cropping profile pictures so Glide can be used
             //Glide.with(context).load(user.getUncroppedProfilePicture()).into(holder.profilePicture);
-            holder.profilePicture = user.getProfilePicture();
+//            holder.profilePicture = user.getProfilePicture();
+            holder.profilePicture.setImageResource(user.getUncroppedProfilePicture());
             holder.friendName.setText(user.getName());
-
         }
 
         @Override

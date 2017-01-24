@@ -28,6 +28,17 @@
             android:paddingTop="16dp"
             android:layout_toEndOf="@+id/circularImageView"
             android:paddingStart="12dp"/>
+    
+    <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:textColor="@color/album_title"
+            android:text="sent a request"
+            android:textSize="15dp"
+            android:layout_below="@id/requestSender"
+            android:layout_toEndOf="@+id/circularImageView"
+            android:paddingStart="12dp"/>
 
     <ImageButton
             android:id="@+id/accept_button"
@@ -39,8 +50,8 @@
             android:layout_marginTop="10dp"
             android:paddingBottom="10dp"
             android:layout_toEndOf="@id/circularImageView"
-            android:layout_below="@+id/requestSender"
-            android:layout_marginLeft="12dp"/>
+            android:layout_below="@+id/dateTextView"
+            android:layout_marginLeft="9dp"/>
     <ImageButton
             android:id="@+id/ignore_button"
             android:onClick="onClickDecline"
@@ -51,7 +62,7 @@
             app:srcCompat="@drawable/button_ignore"
             android:background="@android:color/transparent"
             android:layout_toEndOf="@id/accept_button"
-            android:layout_below="@+id/requestSender"
+            android:layout_below="@+id/dateTextView"
             android:paddingLeft="35dp"
             android:paddingRight="35dp" />
 

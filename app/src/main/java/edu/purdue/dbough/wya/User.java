@@ -9,9 +9,7 @@ import com.mikhaellopez.circularimageview.CircularImageView;
  */
 
 public class User {
-    private CircularImageView profilePicture;
     private int uncroppedProfilePicture;
-    private long GUID;
     private String name;
     private String distance;
     private boolean viewGpsPermission = false;
@@ -29,24 +27,12 @@ public class User {
         this.distance = distance;
     }
 
-    public long getGUID() {
-        return GUID;
-    }
-
     public int getUncroppedProfilePicture() {
         return uncroppedProfilePicture;
     }
 
     public void setUncroppedProfilePicture(int uncroppedProfilePicture) {
         this.uncroppedProfilePicture = uncroppedProfilePicture;
-    }
-
-    public CircularImageView getProfilePicture() {
-        return profilePicture;
-    }
-
-    public void setProfilePicture(CircularImageView profilePicture) {
-        this.profilePicture = profilePicture;
     }
 
     public String getName() {

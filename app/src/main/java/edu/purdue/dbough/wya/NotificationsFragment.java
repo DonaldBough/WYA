@@ -29,9 +29,10 @@ public class NotificationsFragment extends ListFragment {
         //Fake data for temp list. Use firebase here
         String date = "Friday";
         notificationList = new ArrayList<>();
-        notificationList.add(new GpsRequest("5:35 PM through 8:35 PM","Stranger Dan", R.drawable.alicecooper_avatar,date));
-        notificationList.add(new GpsRequest("5:35 PM through 8:35 PM","Dave Grohl", R.drawable.alicecooper_avatar,date));
-        notificationList.add(new GpsRequest("5:35 PM through 8:35 PM","Daniel Tosh", R.drawable.alicecooper_avatar,date));
+        notificationList.add(new GpsRequest("5:35 PM through 8:35 PM","Selena Gomez", R.drawable.user1, date));
+        notificationList.add(new GpsRequest("4:35 PM through 10:35 PM","Kim Kardasian", R.drawable.user2, date));
+        notificationList.add(new GpsRequest("3:35 PM through 11:35 PM","Adele YoGirl", R.drawable.user9, date));
+        notificationList.add(new GpsRequest("6:35 PM through 8:35 PM","Bob Marley", R.drawable.user8, date));
 
         adapter = new EventAdapter(getActivity(),R.layout.notification_row_layout, notificationList);
         setListAdapter(adapter);
@@ -64,7 +65,7 @@ public class NotificationsFragment extends ListFragment {
             LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View rowView;   //rowView represents one row in our ListView
             GpsRequest gpsRequest = values.get(position);
-            //Inflating views can be slow, so android lets us recycle old views
+
             if(convertView == null)
                 rowView = inflater.inflate(R.layout.notification_row_layout,parent,false);
             else
@@ -74,6 +75,10 @@ public class NotificationsFragment extends ListFragment {
             //This is why we can't just use ArrayAdapter
             TextView requestSender = (TextView)rowView.findViewById(R.id.requestSender);
             requestSender.setText(gpsRequest.getRequestSender());
+
+            TextView date = (TextView)rowView.findViewById(R.id.dateTextView);
+            date.setText("Sent a request " + gpsRequest.getDayRequested());
+
             CircularImageView requesterPicture = (CircularImageView) rowView.findViewById(R.id.circularImageView);
             Glide.with(getContext()).load(gpsRequest.getRequesterPicture()).into(requesterPicture);
 

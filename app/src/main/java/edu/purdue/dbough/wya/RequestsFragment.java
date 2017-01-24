@@ -24,24 +24,29 @@ public class RequestsFragment extends ListFragment{
 
         //Fake data for temp list. Use firebase here
         String date = "Friday";
+        String date2 = "Saturday";
+        String date3 = "Wednesday";
+
         requestList = new ArrayList<>();
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Bob Ross", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Sheila Bikey", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Co-Worker Bob", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM!","US Goverment", R.drawable.alicecooper_avatar,date));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Bob Ross", R.drawable.user1, date));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Sheila Bikey", R.drawable.user2,date2));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Co-Worker Bob", R.drawable.user3,date3));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM!","US Goverment", R.drawable.user4,date2));
 
         adapter = new EventAdapter(getActivity(),R.layout.request_row_layout, requestList);
         setListAdapter(adapter);
 
-        requestList.add(new GpsRequest("I added this after setListAdapter()","Developer", R.drawable.alicecooper_avatar, date));
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Bob", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Sheila Bikey", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Co-Worker Bob", R.drawable.alicecooper_avatar,date));
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM!","US Goverment", R.drawable.alicecooper_avatar,date));
+        requestList.add(new GpsRequest("I added this after setListAdapter()","Developer", R.drawable.user5, date2));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Bob", R.drawable.user6,date3));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Sheila Bikey", R.drawable.user7,date2));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Co-Worker Bob", R.drawable.user8,date3));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM!","US Goverment", R.drawable.user9,date2));
         adapter.notifyDataSetChanged();
 
         return view;
     }
+
+
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
