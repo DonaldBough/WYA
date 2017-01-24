@@ -91,21 +91,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Inside RequestsFragment
+     * Inside fragment_requests
      */
     public void onClickSendAlarm(View view) {
         Toast.makeText(view.getContext(), "Send Alarm here",Toast.LENGTH_SHORT).show();
     }
 
     /**
-     * Inside RequestsFragment
+     * Inside fragment_requests
      */
     public void onClickOpenMap(View view) {
         Toast.makeText(view.getContext(), "Open Gmaps here",Toast.LENGTH_SHORT).show();
     }
 
     /**
-     * Inside NotificationsFragment
+     * Inside fragment_requests
+     * @param view
+     */
+    public void onClickAddRequest(View view) {
+        Toast.makeText(view.getContext(), "Send Request here",Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Inside fragment_notifications
      * Happens on notifications being accepted
      */
     public void onClickAccept(View view) {
@@ -113,13 +121,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Inside NotificationsFragment
+     * Inside fragment_notifications
      * Happens on notifications being declined
      */
     public void onClickDecline(View view) {
         Toast.makeText(view.getContext(), "Delete from List Here",Toast.LENGTH_SHORT).show();
     }
-
 
     /**
      * Holds fragments and titles of the tabbed "ViewPager"
