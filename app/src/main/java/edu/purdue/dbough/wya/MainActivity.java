@@ -1,5 +1,6 @@
 package edu.purdue.dbough.wya;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -110,7 +111,8 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void onClickAddRequest(View view) {
-        Toast.makeText(view.getContext(), "Send Request here",Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, AddRequestActivity.class);
+        startActivity(intent);
     }
 
     /**
