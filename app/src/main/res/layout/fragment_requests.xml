@@ -32,16 +32,5 @@
             android:layout_below="@+id/request_header">
     </ListView>
 
-    <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:onClick="onClickAddRequest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="30dp"
-            android:src="@drawable/fab_ic_add"
-            app:backgroundTint="@color/colorPrimary"
-    />
 
 </RelativeLayout>

@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Inside fragment_requests
+     * Inside fragment_home
      * @param view
      */
     public void onClickAddRequest(View view) {

@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="edu.purdue.dbough.wya.HomeFragment">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+                tools:context="edu.purdue.dbough.wya.HomeFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -10,6 +10,19 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:scrollbars="vertical"
+    />
+
+
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:onClick="onClickAddRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="30dp"
+            android:src="@drawable/fab_ic_add"
+            app:backgroundTint="#c8cbd1"
     />
 
 </RelativeLayout>
