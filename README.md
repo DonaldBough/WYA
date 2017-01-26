@@ -5,5 +5,4 @@ I don't know about you, but waiting on your friends to show up somewhere sucks. 
 
 GPS Requests,Event Timeline, Privacy, Settings, Facebook Integeration, GroupMe Integeration
 
-![alt tag](https://s16.postimg.org/3s4apioj9/Screen_Shot_2016_11_16_at_12_36_53_AM.png)
-
+[![Screen Shot 2017-01-26 at 1.30.34 AM.png](https://s29.postimg.org/ksnh11oav/Screen_Shot_2017_01_26_at_1_30_34_AM.png)](https://postimg.org/image/prazfks3n/)
