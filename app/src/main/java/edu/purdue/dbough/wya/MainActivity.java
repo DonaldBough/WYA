@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Setting up the toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Home");
 
         //Setting up ViewPager
         viewPager = (ViewPager) findViewById(R.id.viewpager);
