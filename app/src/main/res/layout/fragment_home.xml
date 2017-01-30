@@ -22,7 +22,7 @@
             android:layout_alignParentEnd="true"
             android:layout_margin="30dp"
             android:src="@drawable/fab_ic_add"
-            app:backgroundTint="#c8cbd1"
+            app:backgroundTint="#9fa3a8"
     />
 
 </RelativeLayout>

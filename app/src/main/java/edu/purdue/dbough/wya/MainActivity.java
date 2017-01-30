@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
-import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void onClickAddRequest(View view) {
-        Intent intent = new Intent(this, AddRequestActivity.class);
+        Intent intent = new Intent(this, RequestListenerActivity.class);
         startActivity(intent);
     }
 

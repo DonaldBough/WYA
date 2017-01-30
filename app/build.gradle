@@ -28,13 +28,12 @@ dependencies {
     })
     // RecyclerView
     // CardView
-    compile 'com.android.support:cardview-v7:23.3.+'
     // Glide for displaying fast image loading for scrolling. Grabbed from https://github.com/bumptech/glide
     //Circular image library. Grabbed from https://github.com/lopspower/CircularImageView
+    compile 'com.android.support:cardview-v7:23.4.0'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
-    compile 'com.android.support:cardview-v7:23.4.0'
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.mikhaellopez:circularimageview:3.0.2'
