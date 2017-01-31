@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Fragment to select date, time, etc for a request
+ * Uses a name picked by user in FriendSearchFragment
  */
-public class CreateRequestFragment extends Fragment {
+public class CreateRequestFragment extends android.app.Fragment {
     Button sendButton;
     OnFinishedRequestListener mCallback;
 
@@ -56,9 +58,7 @@ public class CreateRequestFragment extends Fragment {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                if (mCallback != null) {
-                    mCallback.onFinishedRequest();
-                }
+                mCallback.onFinishedRequest();
             }
         });
 

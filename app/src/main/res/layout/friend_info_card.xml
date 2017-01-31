@@ -81,10 +81,10 @@
             </RelativeLayout>
 
             <Button
-                    android:id="@+id/sendAlarmTextView"
+                    android:id="@+id/sendAlarmButton"
+                    android:onClick="onClickSendAlarm"
                     android:text="Send Alarm"
                     android:textSize="13dp"
-                    android:onClick="onClickSendAlarm"
                     android:background="#ffffff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                     style="?android:attr/borderlessButtonStyle"/>
 
             <Button
-                    android:id="@+id/openGPSTextView"
+                    android:id="@+id/openGpsButton"
                     android:text="Open Map"
                     android:textSize="13dp"
                     android:background="#ffffff"

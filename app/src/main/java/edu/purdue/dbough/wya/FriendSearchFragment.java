@@ -11,16 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-
 
 /**
- * A simple {@link } subclass.
+ * Lets user search and select a friend from a listView.
+ * Sends name to RequestListenerActivity, then to CreateRequestFragment
  */
-public class FriendSearchFragment extends ListFragment {
+public class FriendSearchFragment extends ListFragment{
 
     private ListView lv;
     ArrayAdapter<String> adapter;
@@ -101,7 +98,6 @@ public class FriendSearchFragment extends ListFragment {
             }
         });
 
-        // Inflate the layout for this fragment
         return view;
     }
 
@@ -111,8 +107,6 @@ public class FriendSearchFragment extends ListFragment {
 
         //Load the name and display a message
         String name = (String) lv.getItemAtPosition(position);
-        Toast.makeText(getActivity(), "List item #"+position+" was clicked." +
-                " Name: "+name,Toast.LENGTH_SHORT).show();
 
         //Send name to RequestActivity through our fancy interface
         mCallback.onFriendForRequestSelected(name);

@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void onClickAddRequest(View view) {
-        Intent intent = new Intent(this, RequestListenerActivity.class);
+        Intent intent = new Intent(this, RequestActivity.class);
         startActivity(intent);
     }
 
@@ -127,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
      * Happens on notifications being declined
      */
     public void onClickDecline(View view) {
-        Toast.makeText(view.getContext(), "Delete from List Here",Toast.LENGTH_SHORT).show();
+        Toast.makeText(view.getContext(), "Delete from List Here", Toast.LENGTH_SHORT).show();
     }
 
     /**

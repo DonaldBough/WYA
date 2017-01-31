@@ -18,6 +18,7 @@ public class RequestsFragment extends ListFragment{
     private String selectedUser;
     private int selectedItem;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_requests, container, false);
