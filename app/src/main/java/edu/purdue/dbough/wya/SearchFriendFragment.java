@@ -3,7 +3,6 @@ package edu.purdue.dbough.wya;
 
 import android.app.Activity;
 import android.app.ListFragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
  * Lets user search and select a friend from a listView.
  * Sends name to RequestListenerActivity, then to CreateRequestFragment
  */
-public class FriendSearchFragment extends ListFragment{
+public class SearchFriendFragment extends ListFragment{
 
     private ListView lv;
     ArrayAdapter<String> adapter;
@@ -27,7 +26,7 @@ public class FriendSearchFragment extends ListFragment{
 
     /**
      * Interface implemented in RequestActivity, so when the user selects a friend
-     * FriendSearchFragment can tell RequestActivity what friend was selected
+     * SearchFriendFragment can tell RequestActivity what friend was selected
      */
     public interface OnFriendSelectedListener {
         public void onFriendForRequestSelected(String name);
@@ -35,7 +34,7 @@ public class FriendSearchFragment extends ListFragment{
 
     /**
      * Make sure RequestActivity, or other activties using this fragment implement the
-     * interface so FriendSearchFragment can communicate between the two
+     * interface so SearchFriendFragment can communicate between the two
      * @param activity
      */
     @Override
@@ -52,7 +51,7 @@ public class FriendSearchFragment extends ListFragment{
         }
     }
 
-    public FriendSearchFragment() {
+    public SearchFriendFragment() {
         // Required empty public constructor
     }
 
@@ -86,7 +85,7 @@ public class FriendSearchFragment extends ListFragment{
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
                 // When user changed the Text
-                FriendSearchFragment.this.adapter.getFilter().filter(cs);
+                SearchFriendFragment.this.adapter.getFilter().filter(cs);
             }
 
             @Override

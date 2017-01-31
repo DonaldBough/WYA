@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 /**
  * Fragment to select date, time, etc for a request
- * Uses a name picked by user in FriendSearchFragment
+ * Uses a name picked by user in SearchFriendFragment
  */
 public class CreateRequestFragment extends android.app.Fragment {
     Button sendButton;
