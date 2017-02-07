@@ -71,7 +71,7 @@ public class SearchFriendFragment extends ListFragment{
         friends.add("Ron Swanson");
 
         lv = (ListView) view.findViewById(android.R.id.list);
-        inputSearch = (EditText) view.findViewById(R.id.inputSearch);
+        inputSearch = (EditText) getActivity().findViewById(R.id.inputSearch);
 
         // Adding items to listview
         adapter = new ArrayAdapter<>(view.getContext(), R.layout.request_row_layout, R.id.requestSender, friends);

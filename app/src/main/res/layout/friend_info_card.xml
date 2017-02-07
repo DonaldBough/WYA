@@ -10,6 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            card_view:cardBackgroundColor="#e5f3ff"
             card_view:cardPreventCornerOverlap="false"
             card_view:cardUseCompatPadding="true"
             card_view:cardElevation="3dp">
@@ -28,13 +29,6 @@
                          android:clickable="true"
                          android:scaleType="fitXY">
 
-                <ImageView
-                        android:id="@+id/outside_background"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/home_card_background3"/>
 
                 <!--Grabbed circular image-maker from https://github.com/lopspower/CircularImageView-->
 
@@ -52,30 +46,31 @@
                         android:layout_alignParentStart="true"/>
 
                 <TextView
-                        android:id="@+id/miles_away"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp"
-                        android:text="miles away" android:layout_alignTop="@+id/distance"
-                        android:layout_toEndOf="@+id/distance"/>
-                <TextView
                         android:text="Friend Name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/friend_name"
-                        android:textColor="#ffffff" android:textSize="20dp"
+                        android:textColor="#ffffff" android:textSize="35dp"
                         android:layout_alignTop="@+id/inside_profile" android:layout_toEndOf="@+id/inside_profile"
                         android:layout_marginStart="17dp"/>
+                <TextView
+                        android:id="@+id/miles_away"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:textSize="18dp"
+                        android:text="miles away"
+                        android:layout_alignBaseline="@+id/distance" android:layout_alignBottom="@+id/distance"
+                        android:layout_toEndOf="@+id/distance"/>
                 <TextView
                         android:id="@+id/distance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#ffffff"
-                        android:textSize="55dp"
+                        android:textSize="40dp"
                         android:text="9.99"
-                        android:layout_marginBottom="11dp"
-                        android:layout_alignParentBottom="true" android:layout_alignStart="@+id/friend_name"/>
+                        android:layout_alignParentBottom="true" android:layout_alignStart="@+id/friend_name"
+                        android:layout_marginBottom="16dp"/>
 
 
             </RelativeLayout>
@@ -88,8 +83,8 @@
                     android:background="#ffffff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="35dp"
-                    android:paddingTop="6dp"
+                    android:paddingLeft="50dp"
+                    android:paddingTop="4dp"
                     android:layout_below="@+id/entire_thumbnail"
                     style="?android:attr/borderlessButtonStyle"/>
 
@@ -101,8 +96,8 @@
                     android:onClick="onClickOpenMap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="35dp"
-                    android:paddingTop="6dp"
+                    android:paddingLeft="40dp"
+                    android:paddingTop="4dp"
                     android:layout_below="@+id/entire_thumbnail"
                     android:layout_alignParentRight="true"
                     android:paddingRight="65dp"

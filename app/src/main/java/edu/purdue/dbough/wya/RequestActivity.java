@@ -2,15 +2,23 @@ package edu.purdue.dbough.wya;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 public class RequestActivity extends AppCompatActivity
         implements SearchFriendFragment.OnFriendSelectedListener,
         CreateRequestFragment.OnFinishedRequestListener {
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
+
+        //Setting up the toolbar
+        toolbar = (Toolbar) findViewById(R.id.request_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("To");
 
         //Start with SearchFriendFragment
         SearchFriendFragment newFragment = new SearchFriendFragment();
