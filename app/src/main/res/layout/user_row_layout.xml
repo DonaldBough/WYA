@@ -3,7 +3,7 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="103dp"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp">
 
@@ -18,6 +18,18 @@
             app:civ_shadow="false"
             app:civ_shadow_radius="10"
             app:civ_shadow_color="@color/colorAccent"/>
+
+    <TextView
+            android:id="@+id/hours_remaining"
+            android:text="X hours left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:layout_marginRight="10dp"
+            android:foregroundGravity="right"
+            android:layout_marginEnd="18dp"
+            android:layout_alignParentTop="true" android:layout_alignParentEnd="true"/>
+
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,48 +46,56 @@
             android:id="@+id/reason"
             android:text="Reason why you can look"
             android:textColor="#1c1c1c"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:layout_marginLeft="10dp"
-            android:layout_below="@+id/name" android:layout_toEndOf="@+id/profile_picture"/>
-    <TextView
+            android:layout_below="@+id/name"
+            android:paddingTop="2dp"
+            android:layout_toEndOf="@+id/profile_picture"/>
+
+    <ImageButton
+            android:id="@+id/alarm_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/hours_remaining"
-            android:text="X hours left"
-            android:textSize="15dp"
-            android:layout_marginRight="10dp"
-            android:foregroundGravity="right"
-            android:layout_marginEnd="18dp" android:layout_alignBottom="@+id/open_map_button"
-            android:layout_alignParentEnd="true"/>
-
+            android:maxWidth="20dp"
+            android:maxHeight="20dp"
+            app:srcCompat="@drawable/megaphone3"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:layout_below="@+id/reason"
+            android:layout_alignStart="@+id/reason"
+            android:layout_marginTop="20dp"
+            />
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxWidth="20dp"
             android:maxHeight="20dp"
             android:id="@+id/open_map_button"
-            app:srcCompat="@drawable/marker3"
+            app:srcCompat="@drawable/marker6"
+            android:background="@android:color/transparent"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
-            android:layout_below="@+id/reason"
-            android:layout_alignStart="@+id/reason"
-            android:layout_marginTop="13dp"
-            />
-    <ImageButton
+            android:layout_marginStart="200dp"
+            android:layout_alignTop="@+id/alarm_button"/>
+
+    <TextView
+            android:text="Maps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="20dp"
-            android:maxHeight="20dp"
-            android:id="@+id/alarm_button"
-            app:srcCompat="@drawable/megaphone"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:layout_alignTop="@+id/open_map_button"
+            android:id="@+id/textView3"
+            android:layout_alignBottom="@+id/open_map_button"
             android:layout_toEndOf="@+id/open_map_button"
-            android:layout_marginStart="29dp"
-            />
+            android:paddingLeft="5dp"
+    />
 
+    <TextView
+            android:text="Alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_alignBottom="@+id/alarm_button"
+            android:layout_toEndOf="@+id/alarm_button"
+            android:layout_marginStart="10dp"/>
 
 </RelativeLayout>

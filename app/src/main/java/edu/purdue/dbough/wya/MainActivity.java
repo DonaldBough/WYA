@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
+    //TODO Fix the ugly fucking input screen, go thru and refactor listview adapters, add reason to GPS request
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,10 +92,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setText("ME");
         tabLayout.getTabAt(1).setText("FRIENDS");
         tabLayout.getTabAt(2).setText("REQUESTS");
-
-//        tabLayout.getTabAt(0).setIcon(R.drawable.home_icon);
-//        tabLayout.getTabAt(1).setIcon(R.drawable.binoculars);
-//        tabLayout.getTabAt(2).setIcon(R.drawable.bell);
     }
 
     /**

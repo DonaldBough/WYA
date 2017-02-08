@@ -17,8 +17,9 @@ public class RequestActivity extends AppCompatActivity
 
         //Setting up the toolbar
         toolbar = (Toolbar) findViewById(R.id.request_toolbar);
+        toolbar.setTitle("To");
+        toolbar.setTitleTextColor(android.graphics.Color.WHITE);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("To");
 
         //Start with SearchFriendFragment
         SearchFriendFragment newFragment = new SearchFriendFragment();
@@ -34,6 +35,8 @@ public class RequestActivity extends AppCompatActivity
     @Override
     public void onFriendForRequestSelected(String name) {
         CreateRequestFragment newFragment = new CreateRequestFragment();
+
+        toolbar.setTitle(name);
         getFragmentManager().beginTransaction().replace(R.id.fragment_container, newFragment)
                 .commit();
     }

@@ -1,6 +1,6 @@
 package edu.purdue.dbough.wya;
 
-import android.app.ListFragment;
+import android.support.v4.app.ListFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.*;
@@ -23,24 +23,24 @@ public class HomeFragment extends ListFragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         //Fake data for temp list. Use firebase here
-        String date = "Friday";
-        String date2 = "Saturday";
-        String date3 = "Wednesday";
+        String hours1 = "3 hours left";
+        String hours2 = "2 days left";
+        String hours3 = "30 min left";
 
         requestList = new ArrayList<>();
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Bob Ross", R.drawable.user1, date));
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Sheila Bikey", R.drawable.user2,date2));
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Co-Worker Bob", R.drawable.user3,date3));
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM!","US Goverment", R.drawable.user4,date2));
+        requestList.add(new GpsRequest("Meeting for some ice cream! ","Bob Ross", R.drawable.user1, hours1));
+        requestList.add(new GpsRequest("Meeting for some ice cream! ","Sheila Bikey", R.drawable.user2,hours2));
+        requestList.add(new GpsRequest("Meeting for some ice cream! ","Co-Worker Bob", R.drawable.user3,hours3));
+        requestList.add(new GpsRequest("Meeting for some ice cream! !","US Goverment", R.drawable.user4,hours2));
 
         adapter = new EventAdapter(getActivity(),R.layout.user_row_layout, requestList);
         setListAdapter(adapter);
 
-        requestList.add(new GpsRequest("I added this after setListAdapter()","Developer", R.drawable.user5, date2));
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Bob", R.drawable.user6,date3));
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Sheila Bikey", R.drawable.user7,date2));
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Co-Worker Bob", R.drawable.user8,date3));
-        requestList.add(new GpsRequest("5:35 PM through 8:35 PM!","US Goverment", R.drawable.user9,date2));
+        requestList.add(new GpsRequest("I added this after setListAdapter()","Developer", R.drawable.user5, hours2));
+        requestList.add(new GpsRequest("Going out on the town","Bob", R.drawable.user6,hours3));
+        requestList.add(new GpsRequest("Going out on the town","Sheila Bikey", R.drawable.user7,hours2));
+        requestList.add(new GpsRequest("Going out on the town","Co-Worker Bob", R.drawable.user8,hours3));
+        requestList.add(new GpsRequest("Going out on the town!","US Goverment", R.drawable.user9,hours2));
         adapter.notifyDataSetChanged();
 
         return view;
@@ -108,23 +108,23 @@ public class HomeFragment extends ListFragment {
             GpsRequest gpsRequest = values.get(position);
             //Inflating views can be slow, so android lets us recycle old views
             if(convertView == null)
-                rowView = inflater.inflate(R.layout.request_row_layout,parent,false);
+                rowView = inflater.inflate(R.layout.user_row_layout,parent,false);
             else
                 rowView = convertView;
 
             //Setup rowView UI elements with parts from GpsRequest class
             //This is why we can't just use ArrayAdapter
-            CircularImageView requesterPicture = (CircularImageView) rowView.findViewById(R.id.profile_picture);
-            Glide.with(getContext()).load(gpsRequest.getRequesterPicture()).into(requesterPicture);
-
             TextView textView = (TextView)rowView.findViewById(R.id.name);
             textView.setText(gpsRequest.getRequestSender());
 
             TextView textView2 = (TextView)rowView.findViewById(R.id.reason);
-            textView.setText(gpsRequest.getRequestTime()); //TODO Put field "reason" in GPS request
+            textView2.setText(gpsRequest.getRequestTime()); //TODO Put field "reason" in GPS request
 
             TextView textView3 = (TextView)rowView.findViewById(R.id.hours_remaining);
-            textView.setText(gpsRequest.getDayRequested());
+            textView3.setText(gpsRequest.getDayRequested());
+
+            CircularImageView requesterPicture = (CircularImageView) rowView.findViewById(R.id.profile_picture);
+            Glide.with(getContext()).load(gpsRequest.getRequesterPicture()).into(requesterPicture);
 
 
             return rowView; //This returned view will become a row in our ListView
