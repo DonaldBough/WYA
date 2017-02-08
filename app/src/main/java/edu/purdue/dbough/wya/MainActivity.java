@@ -68,13 +68,13 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        toolbar.setTitle("Home");
+//                        toolbar.setTitle("Home");
                         break;
                     case 1:
-                        toolbar.setTitle("Requests");
+//                        toolbar.setTitle("Requests");
                         break;
                     case 2:
-                        toolbar.setTitle("Notifications");
+//                        toolbar.setTitle("Notifications");
                         break;
                 }
             }
@@ -85,9 +85,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(R.drawable.home_icon);
-        tabLayout.getTabAt(1).setIcon(R.drawable.binoculars);
-        tabLayout.getTabAt(2).setIcon(R.drawable.bell);
+        toolbar.setTitle("WYA");
+
+        tabLayout.getTabAt(0).setText("ME");
+        tabLayout.getTabAt(1).setText("FRIENDS");
+        tabLayout.getTabAt(2).setText("REQUESTS");
+
+//        tabLayout.getTabAt(0).setIcon(R.drawable.home_icon);
+//        tabLayout.getTabAt(1).setIcon(R.drawable.binoculars);
+//        tabLayout.getTabAt(2).setIcon(R.drawable.bell);
     }
 
     /**

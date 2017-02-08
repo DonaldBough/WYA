@@ -1,157 +1,133 @@
 package edu.purdue.dbough.wya;
 
+import android.app.ListFragment;
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Rect;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.*;
-import android.util.TypedValue;
 import android.view.*;
 import android.widget.*;
+import com.bumptech.glide.Glide;
 import com.mikhaellopez.circularimageview.CircularImageView;
-
 import java.util.ArrayList;
-import java.util.List;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends ListFragment {
 
-    private UsersAdapter UsersAdapter;
-    private List<User> userList;
+    ArrayList<GpsRequest> requestList;
+    private EventAdapter adapter;
+    private String selectedUser;
+    private int selectedItem;
 
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
-        userList = new ArrayList<>();
-        UsersAdapter = new UsersAdapter(getContext(), userList);
+        //Fake data for temp list. Use firebase here
+        String date = "Friday";
+        String date2 = "Saturday";
+        String date3 = "Wednesday";
 
-        //Setup for recycler view
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 1);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(7), true));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(UsersAdapter);
-        prepareUsers();
+        requestList = new ArrayList<>();
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Bob Ross", R.drawable.user1, date));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Sheila Bikey", R.drawable.user2,date2));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Co-Worker Bob", R.drawable.user3,date3));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM!","US Goverment", R.drawable.user4,date2));
+
+        adapter = new EventAdapter(getActivity(),R.layout.user_row_layout, requestList);
+        setListAdapter(adapter);
+
+        requestList.add(new GpsRequest("I added this after setListAdapter()","Developer", R.drawable.user5, date2));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Bob", R.drawable.user6,date3));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Sheila Bikey", R.drawable.user7,date2));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM","Co-Worker Bob", R.drawable.user8,date3));
+        requestList.add(new GpsRequest("5:35 PM through 8:35 PM!","US Goverment", R.drawable.user9,date2));
+        adapter.notifyDataSetChanged();
 
         return view;
     }
 
-    /**
-     * Adding few Users for testing
-     */
-    private void prepareUsers() {
-        User a = new User("Alice Cooper", R.drawable.user1, "5 miles away");
-        userList.add(a);
-        a = new User("Ronald McDonald", R.drawable.user2, "0.8 miles away");
-        userList.add(a);
-        a = new User("Donald Trump", R.drawable.user3, "Less Than A Mile Away");
-        userList.add(a);
-        a = new User("Jill Stein", R.drawable.user4, "20 miles away");
-        userList.add(a);
-        a = new User("Donald Bough", R.drawable.user5, "No Location Found");
-        userList.add(a);
-        a = new User("Bill Nye", R.drawable.user6, "1 miles away");
-        userList.add(a);
-
-        UsersAdapter.notifyDataSetChanged();
-    }
 
 
-
-    /**
-     * RecyclerView item decoration - give equal margin around grid item
-     */
-    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
-
-        private int spanCount;
-        private int spacing;
-        private boolean includeEdge;
-
-        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
-            this.spanCount = spanCount;
-            this.spacing = spacing;
-            this.includeEdge = includeEdge;
-        }
-
-        @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            int position = parent.getChildAdapterPosition(view); // item position
-            int column = position % spanCount; // item column
-
-            if (includeEdge) {
-                outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
-                outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
-
-                if (position < spanCount) { // top edge
-                    outRect.top = spacing;
-                }
-                outRect.bottom = spacing; // item bottom
-            } else {
-                outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
-                outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
-                if (position >= spanCount) {
-                    outRect.top = spacing; // item top
-                }
-            }
-        }
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        selectedUser = requestList.get(position).getRequestSender();
+        selectedItem = position;
+        super.onListItemClick(l, v, position, id);
+        registerForContextMenu(l);
+        getActivity().openContextMenu(l);
     }
 
     /**
-     * Converting dp to pixel
+     * Open a context menu on long press, allows for a listview request
+     * to be deleted.
      */
-    private int dpToPx(int dp) {
-        Resources r = getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        //Context menu
+        menu.setHeaderTitle("Request From " + selectedUser);
+        menu.add(Menu.NONE, 0, Menu.NONE, "Delete");
     }
 
     /**
-     * Adapter for events_info_card
+     * Delete request when delete is selected from context menu
      */
-    class UsersAdapter extends RecyclerView.Adapter<HomeFragment.UsersAdapter.FriendViewHolder> {
-        private Context context;
-        private List<User> userList;
-
-        public class FriendViewHolder extends RecyclerView.ViewHolder {
-            public TextView friendName;
-            public CircularImageView profilePicture;
-
-            public FriendViewHolder(View view) {
-                super(view);
-                friendName = (TextView) view.findViewById(R.id.friend_name);
-                profilePicture = (CircularImageView) view.findViewById(R.id.inside_profile);
-            }
+    @Override
+    public boolean onContextItemSelected (MenuItem item){
+        if (selectedUser != null) {
+            requestList.remove(selectedItem);
+            adapter.notifyDataSetChanged();
+            Toast.makeText(getActivity(), "Deleted request from " + selectedUser,Toast.LENGTH_SHORT).show();
         }
 
-        public UsersAdapter(Context context, List<User> UserList) {
-            this.context = context;
-            this.userList = UserList;
+        return super.onContextItemSelected(item);
+    }
+
+    /**
+     * Converts a list of events into row Views to be placed in the ListView.
+     * Most of the work is already done for us in ArrayAdapter, but we need
+     * to hook it up to our specific layout
+     */
+    private class EventAdapter extends ArrayAdapter<GpsRequest> {
+        private ArrayList<GpsRequest> values;
+
+
+        public EventAdapter(Context context, int resource, ArrayList<GpsRequest> events) {
+            super(context, resource, events);
+            values = events;
         }
 
+        /**
+         * Generates the view for a particular item
+         * We don't call this ourselves, it's all handled by the ListView automatically.
+         * We just need to say where the data should go
+         */
         @Override
-        public FriendViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.friend_info_card, parent, false);
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View rowView;   //rowView represents one row in our ListView
+            GpsRequest gpsRequest = values.get(position);
+            //Inflating views can be slow, so android lets us recycle old views
+            if(convertView == null)
+                rowView = inflater.inflate(R.layout.request_row_layout,parent,false);
+            else
+                rowView = convertView;
 
-            return new FriendViewHolder(itemView);
-        }
+            //Setup rowView UI elements with parts from GpsRequest class
+            //This is why we can't just use ArrayAdapter
+            CircularImageView requesterPicture = (CircularImageView) rowView.findViewById(R.id.profile_picture);
+            Glide.with(getContext()).load(gpsRequest.getRequesterPicture()).into(requesterPicture);
 
-        @Override
-        public void onBindViewHolder(final FriendViewHolder holder, int position) {
-            User user = userList.get(position);
+            TextView textView = (TextView)rowView.findViewById(R.id.name);
+            textView.setText(gpsRequest.getRequestSender());
 
-            // loading user profile pic using Glide library
-            //TODO Figure out the best way of permantely cropping profile pictures so Glide can be used
-            //Glide.with(context).load(user.getUncroppedProfilePicture()).into(holder.profilePicture);
-//            holder.profilePicture = user.getProfilePicture();
-            holder.profilePicture.setImageResource(user.getUncroppedProfilePicture());
-            holder.friendName.setText(user.getName());
-        }
+            TextView textView2 = (TextView)rowView.findViewById(R.id.reason);
+            textView.setText(gpsRequest.getRequestTime()); //TODO Put field "reason" in GPS request
 
-        @Override
-        public int getItemCount() {
-            return userList.size();
+            TextView textView3 = (TextView)rowView.findViewById(R.id.hours_remaining);
+            textView.setText(gpsRequest.getDayRequested());
+
+
+            return rowView; //This returned view will become a row in our ListView
         }
     }
 

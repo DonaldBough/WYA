@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp">
+
+    <!--Grabbed circular image-maker from https://github.com/lopspower/CircularImageView-->
+    <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/profile_picture"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/alicecooper_avatar"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="4dp"
+            app:civ_shadow="false"
+            app:civ_shadow_radius="10"
+            app:civ_shadow_color="@color/colorAccent"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:text="Name_Here"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/profile_picture"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/reason"
+            android:text="Reason why you can look"
+            android:textColor="#1c1c1c"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/name" android:layout_toEndOf="@+id/profile_picture"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hours_remaining"
+            android:text="X hours left"
+            android:textSize="15dp"
+            android:layout_marginRight="10dp"
+            android:foregroundGravity="right"
+            android:layout_marginEnd="18dp" android:layout_alignBottom="@+id/open_map_button"
+            android:layout_alignParentEnd="true"/>
+
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="20dp"
+            android:maxHeight="20dp"
+            android:id="@+id/open_map_button"
+            app:srcCompat="@drawable/marker3"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:layout_below="@+id/reason"
+            android:layout_alignStart="@+id/reason"
+            android:layout_marginTop="13dp"
+            />
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="20dp"
+            android:maxHeight="20dp"
+            android:id="@+id/alarm_button"
+            app:srcCompat="@drawable/megaphone"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:layout_alignTop="@+id/open_map_button"
+            android:layout_toEndOf="@+id/open_map_button"
+            android:layout_marginStart="29dp"
+            />
+
+
+</RelativeLayout>
