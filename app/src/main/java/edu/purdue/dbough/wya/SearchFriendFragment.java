@@ -4,6 +4,8 @@ package edu.purdue.dbough.wya;
 import android.app.Activity;
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.support.v7.widget.*;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -23,6 +25,8 @@ public class SearchFriendFragment extends ListFragment{
     EditText inputSearch;
     private ArrayList<String> friends; //List of all possible friends
     OnFriendSelectedListener mCallback;
+    Toolbar toolbar;
+
 
     /**
      * Interface implemented in RequestActivity, so when the user selects a friend
@@ -59,6 +63,7 @@ public class SearchFriendFragment extends ListFragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_friend_search, container, false);
+        toolbar = (android.support.v7.widget.Toolbar) getActivity().findViewById(R.id.request_toolbar);
 
         // Add fake data for now
         friends = new ArrayList<>();
@@ -85,6 +90,7 @@ public class SearchFriendFragment extends ListFragment{
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
                 // When user changed the Text
+                toolbar.setTitle("To    " + cs);
                 SearchFriendFragment.this.adapter.getFilter().filter(cs);
             }
 
