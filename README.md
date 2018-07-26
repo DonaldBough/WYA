@@ -5,5 +5,5 @@ I don't know about you, but waiting on your friends to show up somewhere sucks. 
 
 GPS Requests,Event Timeline, Privacy, Settings, Facebook Integeration, GroupMe Integeration
 
-[![Alt text](screenshot.jpg?raw=true "App Screenshot")
+![Alt text](screenshot.jpg?raw=true "App Screenshot")
 
